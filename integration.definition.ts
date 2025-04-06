@@ -1,4 +1,5 @@
 import { IntegrationDefinition, z } from '@botpress/sdk';
+import { states } from './definitions/states'
 
 const INTEGRATION_NAME = "mcp";
 
@@ -22,7 +23,7 @@ export default new IntegrationDefinition({
   // Updated Configuration schema for MULTIPLE Smithery servers
   configuration: {
     schema: z.object({
-      smitheryApiKey: z.string().min(1, "Smithery API Key cannot be empty.").describe("Your API key obtained from smithery.ai."),
+      //smitheryApiKey: z.string().min(1, "Smithery API Key cannot be empty.").describe("Your API key obtained from smithery.ai."),
       servers: z.array(serverConfigSchema)
         .min(1, "At least one MCP server configuration is required.")
         .describe("Configure one or more connections to Smithery-hosted MCP servers.")
@@ -66,7 +67,7 @@ export default new IntegrationDefinition({
         schema: z.object({
           internalName: z.string().describe("The internal name of the configured server to use."),
           name: z.string().describe("The name of the tool to execute."),
-          parameters: z.record(z.any()).optional().describe("Parameters for the tool, if required.")
+          parameters: z.string().optional().describe("Parameters for the tool, if required.")
         })
       },
       output: { schema: z.object({ result: z.any().optional() }) }
@@ -88,5 +89,6 @@ export default new IntegrationDefinition({
 
   icon: 'icon.svg',
   channels: {},
+  states,
   user: { tags: {} }
 });

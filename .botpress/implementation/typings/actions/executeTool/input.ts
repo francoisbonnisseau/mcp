@@ -8,5 +8,5 @@ export type Input = {
   /** The name of the tool to execute. */
   name: string;
   /** Parameters for the tool, if required. */
-  parameters?: { [key: string]: any };
+  parameters?: string;
 };
